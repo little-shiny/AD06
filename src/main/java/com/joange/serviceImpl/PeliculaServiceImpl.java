@@ -31,51 +31,29 @@ public class PeliculaServiceImpl implements PeliculaService {
 
     @Override
     public Pelicula savePelicula(Pelicula nuevaPelicula) {
-        /**
-         * TODO 22: Implementar el método savePelicula.
-         * Debe guardar la película usando el repositorio.
-         * 
-         * Pista:
-         * if (nuevaPelicula != null) {
-         *     return peliculaRepositorio.save(nuevaPelicula);
-         * }
-         * return new Pelicula();
-         */
-        return null; // Cambiar por la implementación
+        if (nuevaPelicula != null) {
+            return peliculaRepositorio.save(nuevaPelicula);
+        }
+        return new Pelicula();
     }
 
     @Override
     public String deletePelicula(Long id) {
-        /**
-         * TODO 23: Implementar el método deletePelicula.
-         * Debe verificar si existe y luego eliminar.
-         * 
-         * Pista:
-         * Optional<Pelicula> p = peliculaRepositorio.findById(id);
-         * if (p.isPresent()) {
-         *     peliculaRepositorio.deleteById(id);
-         *     return "Película eliminada";
-         * }
-         * return "La película no existe";
-         */
-        return null; // Cambiar por la implementación
+        Optional<Pelicula> p = peliculaRepositorio.findById(id);
+        if (p.isPresent()) {
+            peliculaRepositorio.deleteById(id);
+            return "Película eliminada";
+        }
+        return "La película no existe";
     }
 
-    /**
-     * TODO 24: Implementar findByDirectorId
-     * 
-     * @Override
-     * public List<Pelicula> findByDirectorId(Long idDirector) {
-     *     return peliculaRepositorio.findByDirectorId(idDirector);
-     * }
-     */
+    @Override
+    public List<Pelicula> findByDirectorId(Long idDirector) {
+        return peliculaRepositorio.findByDirectorId(idDirector);
+    }
 
-    /**
-     * TODO 25: Implementar findPeliculasSinDirector
-     * 
-     * @Override
-     * public List<Pelicula> findPeliculasSinDirector() {
-     *     return peliculaRepositorio.findPeliculasSinDirector();
-     * }
-     */
+    @Override
+    public List<Pelicula> findPeliculasSinDirector() {
+        return peliculaRepositorio.findPeliculasSinDirector();
+    }
 }

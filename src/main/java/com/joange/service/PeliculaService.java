@@ -22,14 +22,8 @@ public interface PeliculaService {
     
     /** Eliminar película por ID */
     public String deletePelicula(Long id);
-    
-    /**
-     * TODO 20: Añadir firma del método para buscar películas por director.
-     * public List<Pelicula> findByDirectorId(Long idDirector);
-     */
-    
-    /**
-     * TODO 21: Añadir firma del método para buscar películas sin director.
-     * public List<Pelicula> findPeliculasSinDirector();
-     */
+
+    public List<Pelicula> findByDirectorId(Long idDirector);
+    public List<Pelicula> findPeliculasSinDirector();
+
 }

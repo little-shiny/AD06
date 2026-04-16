@@ -31,97 +31,85 @@ public class PeliculaController {
 
     /**
      * Listar todas las películas.
-     * GET /pelicula
-     * 
-     * TODO 26: Implementar este método.
-     * Debe obtener todas las películas y añadirlas al modelo.
      */
     @GetMapping(value = "/pelicula")
     public String getPeliculas(Model model) {
-        // TODO: Obtener películas y añadir al modelo
-        // List<Pelicula> lasPeliculas = peliculaService.findAllPelicula();
-        // model.addAttribute("peliculas", lasPeliculas);
+        List<Pelicula> lasPeliculas = peliculaService.findAllPelicula();
+        model.addAttribute("peliculas", lasPeliculas);
         return "peliculas";
     }
     
     /**
      * Ver detalle de una película por ID.
-     * GET /pelicula/{id}
-     * 
-     * TODO 27: Implementar este método.
      */
     @GetMapping(value = "/pelicula/{id}")
     public String getPeliculaById(@PathVariable Long id, Model model) {
-        // TODO: Buscar película por ID y añadir al modelo
+        Optional<Pelicula> pelicula = peliculaService.findPeliculaById(id);
+        if (pelicula.isPresent()) {
+            model.addAttribute("pelicula", pelicula.get());
+        }
         return "pelicula";
     }
     
     /**
      * Formulario para añadir nueva película.
      * GET /pelicula/add
-     * 
-     * TODO 28: Implementar este método.
      * Debe crear una nueva Pelicula vacía y también cargar
      * la lista de directores para el selector del formulario.
      */
     @RequestMapping(value = "/pelicula/add")
     public String addPelicula(Model model) {
-        // TODO: Crear nueva película y cargar lista de directores
-        // Pelicula p = new Pelicula();
-        // model.addAttribute("pelicula", p);
-        // model.addAttribute("directores", directorService.findAllDirector());
-        // model.addAttribute("nuevo", true);
+        Pelicula p = new Pelicula();
+        model.addAttribute("pelicula", p);
+        model.addAttribute("directores", directorService.findAllDirector());
+        model.addAttribute("nuevo", Optional.of(true));
         return "peliculaForm";
     }
     
     /**
      * Eliminar una película.
      * GET /pelicula/delete/{id}
-     * 
-     * TODO 29: Implementar este método.
      */
     @GetMapping(value = "/pelicula/delete/{id}")
     public String deletePelicula(@PathVariable Long id) {
-        // TODO: Eliminar película
-        // peliculaService.deletePelicula(id);
+        peliculaService.deletePelicula(id);
         return "redirect:/pelicula";
     }
     
     /**
      * Formulario para modificar película existente.
      * GET /pelicula/update/{id}
-     * 
-     * TODO 30: Implementar este método.
      */
     @RequestMapping(value = "/pelicula/update/{id}")
     public String updatePelicula(@PathVariable Long id, Model model) {
-        // TODO: Buscar película y cargar formulario de edición
+        Optional<Pelicula> peliculaOpt = peliculaService.findPeliculaById(id);
+        if (peliculaOpt.isPresent()) {
+            model.addAttribute("pelicula", peliculaOpt.get());
+            model.addAttribute("directores", directorService.findAllDirector());
+            model.addAttribute("nuevo", false);
+            return "peliculaForm";
+        }
         return "redirect:/pelicula";
     }
     
     /**
      * Guardar película (nueva o modificada).
      * POST /pelicula/save
-     * 
-     * TODO 31: Implementar este método.
      */
     @PostMapping(value = "/pelicula/save")
     public String savePelicula(@ModelAttribute("pelicula") Pelicula pelicula) {
-        // TODO: Guardar película
-        // peliculaService.savePelicula(pelicula);
+        peliculaService.savePelicula(pelicula);
         return "redirect:/pelicula";
     }
     
     /**
      * Ver películas de un director específico.
      * GET /pelicula/director/{id}
-     * 
-     * TODO 32: Implementar este método (OPCIONAL - Avanzado).
-     * Debe mostrar solo las películas de un director concreto.
      */
     @GetMapping(value = "/pelicula/director/{id}")
     public String getPeliculasByDirector(@PathVariable Long id, Model model) {
-        // TODO: Filtrar películas por director
+        List<Pelicula> peliculas = peliculaService.findByDirectorId(id);
+        model.addAttribute("peliculas", peliculas);
         return "peliculas";
     }
 }
