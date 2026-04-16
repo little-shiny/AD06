@@ -8,13 +8,9 @@
 <body>
     <div class="container">
         <h1 th:text="${nuevo} ? '➕ Alta de Director' : '✏️ Modificar Director'">Formulario</h1>
-        
-        <!-- TODO 38: Completar el formulario Thymeleaf -->
-        <!-- El formulario debe enviar datos a /director/save con método POST -->
-        <!-- Usar th:action="@{/director/save}" y th:object="${director}" -->
-        
-        <!-- TODO 39: Completar th:action y th:object del formulario -->
-        <form method="POST">
+
+        <form th:action="@{/director/save}" th:object="${director}" method="POST">
+
             <table>
                 <!-- Mostrar ID solo si es modificación (no es nuevo) -->
                 <tr th:if="*{idDirector}">
@@ -23,13 +19,11 @@
                 </tr>
                 <tr>
                     <td><label>Nombre:</label></td>
-                    <!-- TODO 40: Vincular el campo nombre con th:field="*{nombre}" -->
-                    <td><input type="text" required /></td>
+                    <td><input type="text" th:field="*{nombre}" required /></td>
                 </tr>
                 <tr>
                     <td><label>Año Nacimiento:</label></td>
-                    <!-- TODO 41: Vincular el campo anyoNacimiento con th:field -->
-                    <td><input type="number" required /></td>
+                    <td><input type="number" th:field="*{anyoNacimiento}" required /></td>
                 </tr>
             </table>
             
