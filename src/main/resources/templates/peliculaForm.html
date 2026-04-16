@@ -9,10 +9,7 @@
     <div class="container">
         <h1 th:text="${nuevo} ? '➕ Alta de Película' : '✏️ Modificar Película'">Formulario</h1>
         
-        <!-- TODO 47: Completar th:action y th:object del formulario de película -->
-        <!-- Pista: th:action="@{/pelicula/save}" th:object="${pelicula}" -->
-        
-        <form method="POST">
+        <form th:action="@{/pelicula/save}" th:object="${pelicula}" method="POST">
             <table>
                 <tr th:if="*{idPelicula}">
                     <td><label>ID:</label></td>
@@ -20,23 +17,20 @@
                 </tr>
                 <tr>
                     <td><label>Título:</label></td>
-                    <!-- TODO 48: Vincular el campo título con th:field="*{titulo}" -->
-                    <td><input type="text" required /></td>
+                    <td><input type="text" th:field="*{titulo}" required /></td>
                 </tr>
                 <tr>
                     <td><label>Año:</label></td>
-                    <!-- TODO 49: Vincular el campo año con th:field="*{anyo}" -->
-                    <td><input type="number" required /></td>
+                    <td>    <input type="number" th:field="*{anyo}" required /></td>
                 </tr>
                 <tr>
                     <td><label>Director:</label></td>
                     <td>
-                        <!-- TODO 50: Crear selector de director con th:field y th:each -->
-                        <!-- Pista: <select th:field="*{director}"> -->
-                        <!--        <option th:each="dir : ${directores}" th:value="${dir}" th:text="${dir.nombre}"> -->
-                        <select>
+                        <select th:field="*{director}">
                             <option value="">-- Sin director --</option>
-                            <option>Director</option>
+                            <option th:each="dir : ${directores}"
+                                    th:value="${dir}"
+                                    th:text="${dir.nombre}">Director</option>
                         </select>
                     </td>
                 </tr>
