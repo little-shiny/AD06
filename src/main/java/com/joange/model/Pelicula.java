@@ -10,40 +10,31 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+
 /**
  * Entidad Pelicula - Representa una película en la base de datos.
  * Tiene una relación ManyToOne con Director (muchas películas -> un director)
- * 
- * TODO 11: Añadir la anotación @Entity
- * TODO 12: Añadir la anotación @Table(name="Pelicula")
  */
+@Entity
+@Table(name="Pelicula")
 
 @Data @AllArgsConstructor @NoArgsConstructor
 public class Pelicula implements Serializable {
     
     private static final long serialVersionUID = 1L;
-    
-    /**
-     * TODO 13: Añadir las anotaciones @Id y @GeneratedValue
-     */
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long idPelicula;
-    
-    /**
-     * TODO 14: Añadir la anotación @Column
-     */
+
+    @Column
     String titulo;
-    
-    /**
-     * TODO 15: Añadir la anotación @Column
-     */
+
+    @Column
     int anyo;
-    
-    /**
-     * Relación ManyToOne: Muchas películas pueden tener el mismo director.
-     * 
-     * TODO 16: Añadir las anotaciones para la relación:
-     * - @ManyToOne(fetch = FetchType.EAGER) para cargar el director junto con la película
-     * - @JoinColumn(name = "idDirector") para indicar la columna de la FK
-     */
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idDirector")
     Director director = null;
 }
