@@ -20,19 +20,17 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- TODO 35: Completar el bucle th:each para iterar sobre los directores -->
-                <!-- Pista: th:each="director : ${directores}" -->
-                <tr>
+                <tr th:each="director : ${directores}">
                     <td>
                         <a th:href="@{/director/{id}(id=${director.idDirector})}">
-                            <!-- TODO 36: Mostrar el ID del director con th:text -->
-                            <span>ID</span>
+                            <span th:text="${director.idDirector}">ID</span>
                         </a>
                     </td>
-                    <!-- TODO 37: Mostrar el nombre del director con th:text -->
-                    <td>Nombre</td>
-                    <!-- TODO 38: Mostrar el año de nacimiento con th:text -->
-                    <td>Año</td>
+
+                    <td th:text="${director.nombre}">Nombre</td>
+
+                    <td th:text="${director.anyoNacimiento}">Año</td>
+
                     <td>
                         <a th:href="@{/director/update/{id}(id=${director.idDirector})}">✏️ Editar</a>
                     </td>
