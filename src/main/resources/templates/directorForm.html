@@ -14,16 +14,13 @@
             <table>
                 <!-- Mostrar ID solo si es modificación (no es nuevo) -->
                 <tr th:if="*{idDirector}">
-                    <td><label>ID:</label></td>
-                    <td><input type="text" th:field="*{idDirector}" readonly /></td>
+                    <td><label>ID:<input type="text" th:field="*{idDirector}" readonly /></label></td>
                 </tr>
                 <tr>
-                    <td><label>Nombre:</label></td>
-                    <td><input type="text" th:field="*{nombre}" required /></td>
+                    <td><label>Nombre:<input type="text" th:field="*{nombre}" required /></label></td>
                 </tr>
                 <tr>
-                    <td><label>Año Nacimiento:</label></td>
-                    <td><input type="number" th:field="*{anyoNacimiento}" required /></td>
+                    <td><label>Año Nacimiento:<input type="number" th:field="*{anyoNacimiento}" required /></label></td>
                 </tr>
             </table>
             

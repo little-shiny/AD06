@@ -21,19 +21,11 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- TODO 42: Completar el bucle th:each para iterar sobre las películas -->
-                <!-- Pista: th:each="pelicula : ${peliculas}" -->
-                <tr>
-                    <!-- TODO 43: Mostrar el ID de la película con th:text -->
-                    <td>ID</td>
-                    <!-- TODO 44: Mostrar el título de la película -->
-                    <td>Título</td>
-                    <!-- TODO 45: Mostrar el año de la película -->
-                    <td>Año</td>
-                    <!-- TODO 46: Mostrar el nombre del director (puede ser null) -->
-                    <!-- Pista: usar operador Elvis ?: para manejar null -->
-                    <!-- Ejemplo: th:text="${pelicula.director?.nombre} ?: 'Sin director'" -->
-                    <td>Director</td>
+                <tr th:each="pelicula : ${peliculas}">
+                    <td th:text="${pelicula.idPelicula}">ID</td>
+                    <td th:text="${pelicula.titulo}">Título</td>
+                    <td th:text="${pelicula.anyo}">Año</td>
+                    <td th:text="${pelicula.director?.nombre} ?: 'Sin director'">Director</td>
                     <td>
                         <a th:href="@{/pelicula/update/{id}(id=${pelicula.idPelicula})}">✏️</a>
                     </td>
