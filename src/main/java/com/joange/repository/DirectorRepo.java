@@ -25,11 +25,8 @@ public interface DirectorRepo extends JpaRepository<Director, Long> {
     List<Director> findOldDirector();
     
     /**
-     * TODO 17: Implementar consulta personalizada para buscar directores por año de nacimiento.
-     * 
-     * Pista: Usar @Query con JPQL y parámetro posicional ?1
-     * Ejemplo: "SELECT d FROM Director d WHERE d.anyoNacimiento = ?1"
+     * Consulta que busca directores por año de nacimiento
      */
-    // @Query("...")
-    // List<Director> findDirectorByYear(Integer year);
+    @Query("SELECT d FROM Director d WHERE d.anyoNacimiento = ?1")
+    List<Director> findDirectorByYear(Integer year);
 }

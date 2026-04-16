@@ -14,19 +14,14 @@ import com.joange.model.Pelicula;
 public interface PeliculaRepo extends JpaRepository<Pelicula, Long> {
 
     /**
-     * TODO 18: Implementar consulta para buscar películas por id del director.
-     * 
-     * Pista: Usar @Query con JPQL
-     * "SELECT p FROM Pelicula p WHERE p.director.idDirector = ?1"
+     * Consulta que busca peliculas por la id del director
      */
-    // @Query("...")
-    // List<Pelicula> findByDirectorId(Long idDirector);
+     @Query("SELECT p FROM Pelicula p WHERE p.director.idDirector = ?1")
+     List<Pelicula> findByDirectorId(Long idDirector);
     
     /**
-     * TODO 19: Implementar consulta para buscar películas sin director asignado.
-     * 
-     * Pista: "SELECT p FROM Pelicula p WHERE p.director IS NULL"
+     * Consulta que sirve para buscar películas sin director asignado.
      */
-    // @Query("...")
-    // List<Pelicula> findPeliculasSinDirector();
+    @Query("SELECT p FROM Pelicula p WHERE p.director IS NULL")
+    List<Pelicula> findPeliculasSinDirector();
 }
