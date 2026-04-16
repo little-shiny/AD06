@@ -17,9 +17,6 @@ import javax.persistence.Table;
 
 /**
  * Entidad Director - Representa un director de cine en la base de datos.
- *
- * TODO 5: Añadir la anotación @Entity para marcar esta clase como entidad JPA
- * TODO 6: Añadir la anotación @Table(name="Director") para mapear a la tabla
  */
 @Entity
 @Table(name = "Director")
@@ -29,21 +26,15 @@ public class Director implements Serializable {
 
     
     private static final long serialVersionUID = 1L;
-    
-    /**
-     * TODO 7: Añadir las anotaciones para el identificador:
-     * - @Id para marcar como clave primaria
-     * - @GeneratedValue(strategy = GenerationType.IDENTITY) para autoincremento
-     */
+
+    // Clave primaria
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long idDirector;
-    
-    /**
-     * TODO 8: Añadir la anotación @Column para mapear este atributo
-     */
+
+    @Column
     String nombre;
     
-    /**
-     * TODO 9: Añadir la anotación @Column para mapear este atributo
-     */
+    @Column
     int anyoNacimiento;
 }
