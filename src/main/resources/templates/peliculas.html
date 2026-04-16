@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Lista de Películas</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>🎥 Lista de Películas</h1>
+        
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Año</th>
+                    <th>Director</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- TODO 42: Completar el bucle th:each para iterar sobre las películas -->
+                <!-- Pista: th:each="pelicula : ${peliculas}" -->
+                <tr>
+                    <!-- TODO 43: Mostrar el ID de la película con th:text -->
+                    <td>ID</td>
+                    <!-- TODO 44: Mostrar el título de la película -->
+                    <td>Título</td>
+                    <!-- TODO 45: Mostrar el año de la película -->
+                    <td>Año</td>
+                    <!-- TODO 46: Mostrar el nombre del director (puede ser null) -->
+                    <!-- Pista: usar operador Elvis ?: para manejar null -->
+                    <!-- Ejemplo: th:text="${pelicula.director?.nombre} ?: 'Sin director'" -->
+                    <td>Director</td>
+                    <td>
+                        <a th:href="@{/pelicula/update/{id}(id=${pelicula.idPelicula})}">✏️</a>
+                    </td>
+                    <td>
+                        <a th:href="@{/pelicula/delete/{id}(id=${pelicula.idPelicula})}">🗑️</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="actions">
+            <a th:href="@{/pelicula/add}" class="btn">➕ Añadir Película</a>
+            <a th:href="@{/}" class="btn">🏠 Volver al Inicio</a>
+        </div>
+    </div>
+</body>
+</html>

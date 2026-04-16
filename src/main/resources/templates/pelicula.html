@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Detalle de Película</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 Detalle de Película</h1>
+        
+        <div th:if="${vacio}" class="alert">
+            <p th:text="${msg}">Mensaje</p>
+        </div>
+        
+        <div th:unless="${vacio}" class="card">
+            <p><strong>ID:</strong> <span th:text="${pelicula.idPelicula}">1</span></p>
+            <p><strong>Título:</strong> <span th:text="${pelicula.titulo}">Título</span></p>
+            <p><strong>Año:</strong> <span th:text="${pelicula.anyo}">2000</span></p>
+            <p><strong>Director:</strong> 
+                <span th:text="${pelicula.director?.nombre} ?: 'Sin director'">Director</span>
+            </p>
+        </div>
+        
+        <div class="actions">
+            <a th:href="@{/pelicula}" class="btn">🎥 Ver todas las películas</a>
+            <a th:href="@{/}" class="btn">🏠 Volver al Inicio</a>
+        </div>
+    </div>
+</body>
+</html>

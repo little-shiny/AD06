@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title th:text="${nuevo} ? 'Alta de Director' : 'Modificar Director'">Formulario</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+    <div class="container">
+        <h1 th:text="${nuevo} ? '➕ Alta de Director' : '✏️ Modificar Director'">Formulario</h1>
+        
+        <!-- TODO 38: Completar el formulario Thymeleaf -->
+        <!-- El formulario debe enviar datos a /director/save con método POST -->
+        <!-- Usar th:action="@{/director/save}" y th:object="${director}" -->
+        
+        <!-- TODO 39: Completar th:action y th:object del formulario -->
+        <form method="POST">
+            <table>
+                <!-- Mostrar ID solo si es modificación (no es nuevo) -->
+                <tr th:if="*{idDirector}">
+                    <td><label>ID:</label></td>
+                    <td><input type="text" th:field="*{idDirector}" readonly /></td>
+                </tr>
+                <tr>
+                    <td><label>Nombre:</label></td>
+                    <!-- TODO 40: Vincular el campo nombre con th:field="*{nombre}" -->
+                    <td><input type="text" required /></td>
+                </tr>
+                <tr>
+                    <td><label>Año Nacimiento:</label></td>
+                    <!-- TODO 41: Vincular el campo anyoNacimiento con th:field -->
+                    <td><input type="number" required /></td>
+                </tr>
+            </table>
+            
+            <!-- Botón con texto dinámico según sea alta o modificación -->
+            <input type="submit" th:value="${nuevo} ? 'Guardar' : 'Modificar'" class="btn" />
+        </form>
+        
+        <div class="actions">
+            <a th:href="@{/director}" class="btn">📋 Volver a la lista</a>
+        </div>
+    </div>
+</body>
+</html>

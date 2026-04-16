@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Lista de Directores</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>📋 Lista de Directores</h1>
+        
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Año Nacimiento</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- TODO 35: Completar el bucle th:each para iterar sobre los directores -->
+                <!-- Pista: th:each="director : ${directores}" -->
+                <tr>
+                    <td>
+                        <a th:href="@{/director/{id}(id=${director.idDirector})}">
+                            <!-- TODO 36: Mostrar el ID del director con th:text -->
+                            <span>ID</span>
+                        </a>
+                    </td>
+                    <!-- TODO 37: Mostrar el nombre del director con th:text -->
+                    <td>Nombre</td>
+                    <!-- TODO 38: Mostrar el año de nacimiento con th:text -->
+                    <td>Año</td>
+                    <td>
+                        <a th:href="@{/director/update/{id}(id=${director.idDirector})}">✏️ Editar</a>
+                    </td>
+                    <td>
+                        <a th:href="@{/director/delete/{id}(id=${director.idDirector})}">🗑️ Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="actions">
+            <a th:href="@{/director/add}" class="btn">➕ Añadir Director</a>
+            <a th:href="@{/}" class="btn">🏠 Volver al Inicio</a>
+        </div>
+    </div>
+</body>
+</html>

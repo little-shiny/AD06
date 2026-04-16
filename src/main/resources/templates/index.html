@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Gestión de Cine</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 Gestión de Cine</h1>
+        <p>Aplicación Spring Boot MVC con Thymeleaf</p>
+        
+        <div class="menu">
+            <h2>Menú Principal</h2>
+            <ul>
+                <li><a th:href="@{/director}">📋 Ver Directores</a></li>
+                <li><a th:href="@{/director/add}">➕ Añadir Director</a></li>
+                <li><a th:href="@{/pelicula}">🎥 Ver Películas</a></li>
+                <li><a th:href="@{/pelicula/add}">➕ Añadir Película</a></li>
+            </ul>
+        </div>
+        
+        <div class="info">
+            <h3>Información del proyecto</h3>
+            <p>Este proyecto implementa una aplicación web MVC para gestionar
+            información de directores y películas de cine.</p>
+            <p><strong>Tecnologías:</strong> Spring Boot, Spring Data JPA, 
+            Thymeleaf, MySQL, Lombok</p>
+        </div>
+    </div>
+</body>
+</html>

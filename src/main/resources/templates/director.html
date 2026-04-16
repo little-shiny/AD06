@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Detalle del Director</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>👤 Detalle del Director</h1>
+        
+        <!-- Mostrar mensaje si no hay director -->
+        <div th:if="${vacio}" class="alert">
+            <p th:text="${msg}">Mensaje de error</p>
+        </div>
+        
+        <!-- Mostrar datos del director si existe -->
+        <div th:unless="${vacio}" class="card">
+            <p><strong>ID:</strong> <span th:text="${director.idDirector}">1</span></p>
+            <p><strong>Nombre:</strong> <span th:text="${director.nombre}">Nombre</span></p>
+            <p><strong>Año Nacimiento:</strong> <span th:text="${director.anyoNacimiento}">1970</span></p>
+        </div>
+        
+        <div class="actions">
+            <a th:href="@{/director}" class="btn">📋 Ver todos los directores</a>
+            <a th:href="@{/}" class="btn">🏠 Volver al Inicio</a>
+        </div>
+    </div>
+</body>
+</html>
