@@ -47,10 +47,10 @@ public class DirectorController {
         Optional<Director> elDirector = directorService.findDirectorById(id);
         if (elDirector.isPresent()) {
             model.addAttribute("director", elDirector.get());
-            model.addAttribute("vacio", false);
+            model.addAttribute("vacio", Optional.of(false));
         } else {
             model.addAttribute("msg", "Sin directores con id " + id);
-            model.addAttribute("vacio", true);
+            model.addAttribute("vacio", Optional.of(true));
         }
         return "director";
     }
@@ -58,17 +58,14 @@ public class DirectorController {
     /**
      * Formulario para añadir nuevo director.
      * GET /director/add
-     * 
-     * TODO 33: Completar este método.
      * Debe crear un nuevo objeto Director vacío y añadirlo al modelo.
      * También debe añadir el atributo "nuevo" = true.
      */
     @RequestMapping(value = "/director/add")
     public String addDirector(Model model) {
-        // TODO: Crear nuevo Director y añadir al modelo
-        // Director d = new Director();
-        // model.addAttribute("director", d);
-        // model.addAttribute("nuevo", true);
+        Director d = new Director();
+        model.addAttribute("director", d);
+        model.addAttribute("nuevo", Optional.of(true));
         return "directorForm";
     }
     
@@ -86,20 +83,17 @@ public class DirectorController {
     /**
      * Formulario para modificar director existente.
      * GET /director/update/{id}
-     * 
-     * TODO 34: Completar este método.
      * Debe buscar el director por ID y si existe, añadirlo al modelo
      * con el atributo "nuevo" = false.
      */
     @RequestMapping(value = "/director/update/{id}")
     public String updateDirector(@PathVariable Long id, Model model) {
-        // TODO: Buscar director y añadir al modelo
-        // Optional<Director> directorOpt = directorService.findDirectorById(id);
-        // if (directorOpt.isPresent()) {
-        //     model.addAttribute("director", directorOpt.get());
-        //     model.addAttribute("nuevo", false);
-        //     return "directorForm";
-        // }
+        Optional<Director> directorOpt = directorService.findDirectorById(id);
+        if (directorOpt.isPresent()) {
+            model.addAttribute("director", directorOpt.get());
+            model.addAttribute("nuevo", Optional.of(false));
+            return "directorForm";
+        }
         return "redirect:/director";
     }
     

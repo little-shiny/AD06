@@ -86,7 +86,7 @@ public class PeliculaController {
         if (peliculaOpt.isPresent()) {
             model.addAttribute("pelicula", peliculaOpt.get());
             model.addAttribute("directores", directorService.findAllDirector());
-            model.addAttribute("nuevo", false);
+            model.addAttribute("nuevo", Optional.of(false));
             return "peliculaForm";
         }
         return "redirect:/pelicula";
